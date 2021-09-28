@@ -3,6 +3,49 @@ document.getElementById("submit").onclick = function(e){
     calculateResults(e); // Call the function
 };
 
+// Check if download button is pressed
+document.getElementById("download").onclick = function(e){
+    generateCSV(e); // Call the function
+};
+
+// Get csv data
+function generateCSV(e){
+    e.preventDefault();
+    const formdata = new FormData(document.getElementById('gradeForm'));
+    const formObj = Object.fromEntries(formdata);
+    const len = Object.keys(formObj).length/2;
+    let formValues = '';
+
+    for(let i=1; i<= len; i++){
+        // comma separated values and break line
+        let subValue = '';
+
+        if(formObj['grade'+i] != '' || formObj['credit'+i] != ''){ // see if grades have been inputted or not
+            subValue = 'Assignment ' + i;
+        }
+
+        formValues += subValue+','+formObj['grade'+i] +','+formObj['credit'+i]+ "\r\n";
+    }
+
+    console.log(formValues); // debug
+    downloadCSV(formValues);
+};
+
+// Download the csv file with data
+function downloadCSV(formValues){
+    const columnNames = "Assignment/Module, Grade (%), Weight (Credits)";
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += columnNames + "\r\n";
+    csvContent += formValues + "\r\n";
+
+    const encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "my-grade-data.csv");
+    document.body.appendChild(link);
+    link.click();
+};
+
 // Grade calculation function
 function calculateResults(e){
     e.preventDefault();

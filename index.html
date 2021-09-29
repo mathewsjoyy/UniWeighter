@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UniWeighter</title>
     <link rel="icon" href="images/icon.ico">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
     <script
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js">
     </script>
   </head>
 
 <body>
-
-    <style>
-        body {
-           background-image: url("images/background.png");
-        }
-     </style>
 
     <section class="section">
         <div class="container is-centered is-mobile">
@@ -353,7 +345,7 @@
                         <br>
                         <div class="control">
                             <button id="download" class="button is-large is-fullwidth is-primary is-outlined">
-                                Get CSV of data
+                                Download CSV Of Your Grades
                             </button>
                         </div>
                         </form>
@@ -364,6 +356,27 @@
             </div>
         </div>
     </section>
+
+    <!--Popup modal-->
+    <div class="modal is-mobile" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="section modal-wrap is-mobile">
+                <br><br><br>
+                <article class="message is-medium">
+                    <div class="message-header">
+                    <p>Did you enter any values?</p>
+                    </div>
+                    <div class="message-body">
+                    It seems you <strong>haven't entered any grades/credits</strong> at all. Try again, and make sure you fill in some values before trying
+                    to download a CSV file, so we can create a file from the values you input.<br>
+                    <small><i>If you did enter values and it still isn't working try refreshing this page.</i></div></small>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
     <!-- RESULTS -->
     <section class="section is-centered is-mobile is-paddingless"> 

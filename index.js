@@ -8,13 +8,26 @@ document.getElementById("download").onclick = function(e){
     generateCSV(e); // Call the function
 };
 
+// Modal close button
+var modalClose = document.getElementsByClassName('modal-close')[0]; // get first instance
+modalClose.onclick = function(){
+    modal.style.display = 'none';
+};
+window.onclick = function(event){ // Give option to close modal by clicking on dark background
+    if(event.target.className == 'modal-background'){
+        modal.style.display = 'none';
+    }
+};
+
 // Get csv data
 function generateCSV(e){
     e.preventDefault();
+
     const formdata = new FormData(document.getElementById('gradeForm'));
     const formObj = Object.fromEntries(formdata);
     const len = Object.keys(formObj).length/2;
     let formValues = '';
+    let emptyCount = 0;
 
     for(let i=1; i<= len; i++){
         // comma separated values and break line
@@ -24,11 +37,21 @@ function generateCSV(e){
             subValue = 'Assignment ' + i;
         }
 
+        // Keep track of entries where user entered 0 values
+        formObj['credit'+i] == '' ? emptyCount += 1 : emptyCount=emptyCount;
+        formObj['grade'+i] == '' ? emptyCount += 1 : emptyCount=emptyCount;
+
         formValues += subValue+','+formObj['grade'+i] +','+formObj['credit'+i]+ "\r\n";
     }
 
-    console.log(formValues); // debug
-    downloadCSV(formValues);
+    if(emptyCount == 14){ // Check if user didn't enter any values at all (dont download csv)
+        var modal = document.getElementById('modal');
+        modal.style.display = 'block'; // show the modal if if condition is met
+    }else{
+        console.log(formValues); // debug
+        downloadCSV(formValues);
+    }
+    return;
 };
 
 // Download the csv file with data
@@ -44,6 +67,7 @@ function downloadCSV(formValues){
     link.setAttribute("download", "my-grade-data.csv");
     document.body.appendChild(link);
     link.click();
+    return;
 };
 
 // Grade calculation function
@@ -88,5 +112,6 @@ function calculateResults(e){
 
     document.getElementById("averageGrade").innerHTML = "<i class='fa fa-percentage'></i> " + parseFloat(weight_grade).toFixed(2);
     document.getElementById("formalGrade").innerHTML = "<i class='fas fa-graduation-cap'></i> " + formal_grade;
+    return;
 };
 

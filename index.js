@@ -8,8 +8,11 @@ document.getElementById("download").onclick = function(e){
     generateCSV(e); // Call the function
 };
 
+// The modal
+var modal = document.getElementById('modal');
 // Modal close button
 var modalClose = document.getElementsByClassName('modal-close')[0]; // get first instance
+
 modalClose.onclick = function(){
     modal.style.display = 'none';
 };
@@ -45,7 +48,6 @@ function generateCSV(e){
     }
 
     if(emptyCount == 14){ // Check if user didn't enter any values at all (dont download csv)
-        var modal = document.getElementById('modal');
         modal.style.display = 'block'; // show the modal if if condition is met
     }else{
         console.log(formValues); // debug

@@ -49,6 +49,8 @@
                                 One worth <b>40%</b> weighting and you get <b>75/100</b> marks, the other worth <b>60%</b> weighting and you get <b>62/100</b>.
                                 So you can type in 40 for the weight and 75 for the grade on first row, also 60 and 62 for the next row.
                                 Press Calculate and you find you got an overall average mark of <b>67.2</b> and a grade of <b>2:1</b> for that module.
+                                <br>
+                                <i>Grades that are in decimals are always rounded up (check with your university how they address this), e.g 69.9 is rounded up to 70.</i>
                             </p>
                             </div>
                         </div>
@@ -385,14 +387,15 @@
         
             <div class="column is-12-tablet is-6-desktop is-3-widescreen ">
                 <div class="notification is-success is-light has-text">
-                <p id="averageGrade" class="title is-1"><i class="fa fa-percentage"></i></p>
-                <p class="subtitle is-4">Average Grade</p>
+                <p class="subtitle is-4" style="margin:5px">Average Grade</p>
+                <p id="averageGrade" class="title is-1" style="margin:2px;">Grade <i class="fa fa-percentage"></i></p>
+                <p id="averageGrade2" class="title is-4">True Grade <i class="fa fa-percentage"></i></p>
                 </div>
             </div>
             <div class="column is-12-tablet is-6-desktop is-3-widescreen">
                 <div class="notification is-link is-light has-text">
-                <p id="formalGrade" class="title is-1"><i class="fas fa-graduation-cap"></i></p>
                 <p class="subtitle is-4">Formal Grade</p>
+                <p id="formalGrade" class="title is-1"><i class="fas fa-graduation-cap"></i></p>
                 </div>
             </div>
         </div>

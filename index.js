@@ -88,31 +88,35 @@ function calculateResults(e){
     const weight_grade = (UIgrade1*UIcredit1 + UIgrade2*UIcredit2 + UIgrade3*UIcredit3 + UIgrade4*UIcredit4 + UIgrade5*UIcredit5 + UIgrade6*UIcredit6 + UIgrade7*UIcredit7) /
                         (UIcredit1 + UIcredit2 + UIcredit3 + UIcredit4 + UIcredit5 + UIcredit6 + UIcredit7);
 
+    // Weighted grade rounded up
+    const weight_grade_rounded = Math.ceil(weight_grade);
+
     console.log(weight_grade); // for debugging
 
     // Find formal grade
     var formal_grade;
 
-    if(weight_grade < 40 && weight_grade >= 0){
+    if(weight_grade_rounded < 40.00 && weight_grade_rounded >= 0){
         formal_grade = "Fail :(";
     }
-    else if(weight_grade >= 40 && weight_grade <= 49){
+    else if(weight_grade_rounded >= 40 && weight_grade_rounded <= 49){
         formal_grade = "3rd";
     }
-    else if(weight_grade >= 50 && weight_grade <= 59){
+    else if(weight_grade_rounded >= 50 && weight_grade_rounded <= 59){
         formal_grade = "2:2";
     }
-    else if(weight_grade >= 60 && weight_grade <= 69){
+    else if(weight_grade_rounded >= 60 && weight_grade_rounded <= 69){
         formal_grade = "2:1";
     }
-    else if(weight_grade >= 70 && weight_grade <= 100){
+    else if(weight_grade_rounded >= 70 && weight_grade_rounded <= 100){
         formal_grade = "First :)";
     }
     else{
         formal_grade = "Out of grade range (0% - 100%)"
     }
 
-    document.getElementById("averageGrade").innerHTML = "<i class='fa fa-percentage'></i> " + parseFloat(weight_grade).toFixed(2);
+    document.getElementById("averageGrade2").innerHTML = "True Grade <i class='fa fa-percentage'></i> " + parseFloat(weight_grade).toFixed(2);
+    document.getElementById("averageGrade").innerHTML = "Grade <i class='fa fa-percentage'></i> " + weight_grade_rounded;
     document.getElementById("formalGrade").innerHTML = "<i class='fas fa-graduation-cap'></i> " + formal_grade;
     return;
 };
